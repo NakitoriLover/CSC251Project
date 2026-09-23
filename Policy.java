@@ -19,7 +19,7 @@ public class Policy
    }
    
    //all arg constructor
-   public Policy(int num, int a, String name, String first, String last, String smoke, double h, double w)
+   public Policy(int num, String name, String first, String last, int a, String smoke, double h, double w)
    {
       policyNum = num; 
       age = a;
@@ -231,7 +231,7 @@ public class Policy
       System.out.println("Policyholder's First Name: " + firstName);
       System.out.println("Policyholder's Last Name: " + lastName);
       System.out.println("Policyholder's Age: " + age);
-      System.out.println("Policyholder's Smoking Status (Y/N): " + smokingStatus);
+      System.out.println("Policyholder's Smoking Status (smoker/non-smoker): " + smokingStatus);
       System.out.println("Policyholder's Height: " + height + " inches");
       System.out.println("Policyholder's Weight: " + weight + " pounds");
       System.out.printf("Policyholder's BMI: %.2f\n", calculateBMI());
