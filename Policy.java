@@ -1,168 +1,241 @@
 public class Policy
 {
    //instance fields
-   private int policyNum, holderAge;
-   private String providerName, holderFirstName, holderLastName, smokingStatus;
-   private double holderHeight, holderWeight;
+   private int policyNum, age;
+   private String providerName, firstName, lastName, smokingStatus;
+   private double height, weight;
    
    //no arg constructor
    public Policy()
    {
       policyNum = 0; 
-      holderAge = 0;
+      age = 0;
       providerName = "";
-      holderFirstName = "";
-      holderLastName = "";
+      firstName = "";
+      lastName = "";
       smokingStatus = "";
-      holderHeight = 0.0;
-      holderWeight = 0.0;
-   }
-   
-   //basic arg constructors
-   public Policy(int a)
-   {
-      holderAge = a;
-   }
-   
-   public Policy(String a)
-   {
-      smokingStatus = a;
-   }
-   
-   public Policy(double a, double b)
-   {
-      holderHeight = a;
-      holderWeight = b;
+      height = 0.0;
+      weight = 0.0;
    }
    
    //all arg constructor
-   public Policy(int a, int b, String c, String d, String e, String f, double g, double h)
+   public Policy(int num, int a, String name, String first, String last, String smoke, double h, double w)
    {
-      policyNum = a; 
-      holderAge = b;
-      providerName = c;
-      holderFirstName = d;
-      holderLastName = e;
-      smokingStatus = f;
-      holderHeight = g;
-      holderWeight = h;
+      policyNum = num; 
+      age = a;
+      providerName = name;
+      firstName = first;
+      lastName = last;
+      smokingStatus = smoke;
+      height = h;
+      weight = w;
    }
    
-   //setter and return methods for policy number
-   public void setPolicyNum(int a)
+   /**
+      This method sets the policy number
+      @param num Policy number integer inputted by user
+   */
+   public void setPolicyNum(int num)
    {
-      policyNum = a;
+      policyNum = num;
    }
    
+   /**
+      This method returns the policy number
+      @return Policy Number that was previously set
+   */
    public int returnPolicyNum()
    {
       return policyNum;
    }
    
-   //setter and return methods for policy holders age
-   public void setHolderAge(int a)
+   /**
+      This method sets the Age of the holder
+      @param a Age integer inputted by user
+   */
+   public void setAge(int a)
    {
-      holderAge = a;
+      age = a;
    }
    
-   public int returnHolderAge()
+   /**
+      This method returns the holder age
+      @return Holder age that was previously set
+   */
+   public int returnAge()
    {
-      return holderAge;
+      return age;
    }
    
-   //setter and return methods for insurance providers name
-    public void setProviderName(String a)
+   /**
+      This method sets the name of the provider
+      @param name Provider name is stored as a String
+   */
+    public void setProviderName(String name)
    {
-      providerName = a;
+      providerName = name;
    }
    
+   /**
+      This method returns the Provider Name
+      @return Provider Name String that was previous set
+   */
    public String returnProviderName()
    {
       return providerName;
    }
    
-    //setter and return methods for policy holders first name
-   public void setHolderFirstName(String a)
+    /**
+      This method sets the first name of the policy holder
+      @param first Policy holder's first name is stored as a String
+   */
+   public void setFirstName(String first)
    {
-      holderFirstName = a;
+      firstName = first;
    }
    
-   public String returnHolderFirstName()
+   /**
+      This method returns the Policy Holder's First Name
+      @return Policy Holder First Name String that was previous set
+   */
+   public String returnFirstName()
    {
-      return holderFirstName;
+      return firstName;
    }
    
-   //setter and return methods for policy holders last name
-   public void setHolderLastName(String a)
+   /**
+      This method sets the last name of the policy holder
+      @param last Policy holder's last name is stored as a String
+   */
+   public void setLastName(String last)
    {
-      holderLastName = a;
+      lastName = last;
    }
    
-   public String returnHolderLastName()
+    /**
+      This method returns the Policy Holder's Last Name
+      @return Policy Holder Last Name String that was previous set
+   */
+   public String returnLastName()
    {
-      return holderLastName;
+      return lastName;
    }
    
-   //setter and return methods for policy holders smoking status
-   public void setSmokingStatus(String a)
+  /**
+      This method sets the smoking status of the policy holder
+      @param smoke Policy holder's smoking status is stored as a String
+   */
+   public void setSmokingStatus(String smoke)
    {
-      smokingStatus = a;
+      smokingStatus = smoke;
    }
    
+   /**
+      This method returns the Policy Holder's Smoking Status
+      @return Policy Holder Smoking Status String that was previous set
+   */
    public String returnSmokingStatus()
    {
       return smokingStatus;
    }
    
-   //setter and return methods for policy holders height
-   public void setHolderHeight(double a)
+   /**
+      This method sets the height of the policy holder
+      @param h Policy holder's height is stored as a double
+   */
+   public void setHeight(double h)
    {
-      holderHeight = a;
+      height = h;
    }
    
-   public double returnHolderHeight()
+    /**
+      This method returns the Policy Holder's Height
+      @return Policy Holder Height double that was previous set
+   */
+   public double returnHeight()
    {
-      return holderHeight;
+      return height;
    }
    
-   //setter and return methods for policy holders weight
-   public void setHolderWeight(double a)
+   /**
+      This method sets the weight of the policy holder
+      @param w Policy holder's weight is stored as a double
+   */
+   public void setWeight(double w)
    {
-      holderWeight = a;
+      weight = w;
    }
    
-   public double returnHolderWeight()
+    /**
+      This method returns the Policy Holder's Weight
+      @return Policy Holder Weight double that was previous set
+   */
+   public double returnWeight()
    {
-      return holderWeight;
+      return weight;
    }
-   
+   /**
+      This method uses the holder's height and weight to calculate BMI
+      @return The result of the BMI calculations utilizing the holder's height and weight
+   */
    public double calculateBMI()
    {
-      double BMI = (holderWeight * 703) / (holderHeight * holderHeight);
+      final double CONVFACTOR = 703;
+      
+      double BMI = (weight * CONVFACTOR) / (height * height);
       return BMI;
    }
    
+   /**
+      This method uses several methods and variables to calculate the overall cost
+      @return The result of the cost calculations utilizing various methods and variables
+   */
    public double calculateCost()
    {
-      double totalCost = 600;
+      final double BASE_PRICE = 600;
+      final double ADDITIONAL_FEE_AGE = 75;
+      final double ADDITIONAL_FEE_SMOKING = 100;
+      final double ADDITIONAL_FEE_PER_BMI = 20;
+      
+      final int AGE_THRESHOLD = 50;
+      final int BMI_THRESHOLD = 35;
+      
+      double totalCost = BASE_PRICE;
       double BMI = calculateBMI();
       
-      if(holderAge > 50)
+      if(age > AGE_THRESHOLD)
       {
-         totalCost += 75;
+         totalCost += ADDITIONAL_FEE_AGE;
       }
       
       if(smokingStatus.equalsIgnoreCase("smoker"))
       {
-         totalCost += 100;
+         totalCost += ADDITIONAL_FEE_SMOKING;
       }
       
-      if(BMI > 35)
+      if(BMI > BMI_THRESHOLD)
       {
-         totalCost += (BMI - 35) * 20;
+         totalCost += (BMI - BMI_THRESHOLD) * ADDITIONAL_FEE_PER_BMI;
       }
       
       return totalCost;
+   }
+   
+   /**
+      This method uses all previous methods to display information about the cost and policy.
+   */
+   public void displayInformation()
+   {
+      System.out.println("Policy Number: " + policyNum);
+      System.out.println("Provider Name: " + providerName);
+      System.out.println("Policyholder's First Name: " + firstName);
+      System.out.println("Policyholder's Last Name: " + lastName);
+      System.out.println("Policyholder's Age: " + age);
+      System.out.println("Policyholder's Smoking Status (Y/N): " + smokingStatus);
+      System.out.println("Policyholder's Height: " + height + " inches");
+      System.out.println("Policyholder's Weight: " + weight + " pounds");
+      System.out.printf("Policyholder's BMI: %.2f\n", calculateBMI());
+      System.out.printf("Policy Price: $%.2f\n", calculateCost());
    }
    
 }
