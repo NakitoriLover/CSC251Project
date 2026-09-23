@@ -222,7 +222,7 @@ public class Policy
    }
    
    /**
-      This method uses all previous methods to display information about the cost and policy.
+      This method uses all previous variables and methods to display information about the cost and policy.
    */
    public void displayInformation()
    {
