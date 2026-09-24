@@ -6,7 +6,7 @@ public class Project_Morgan_Rose
    public static void main(String[] args) throws IOException
    {
       
-      //file is searched for
+      //file is created
       File file = new File("PolicyInformation.txt");
       
        //verifies existance of file
@@ -16,13 +16,16 @@ public class Project_Morgan_Rose
          System.exit(0);
       }
       
-      //file has been opened
-      Scanner inputFile = new Scanner(file);
-      
       //variables
       int policyNum = 0, age = 0, smokerNum = 0, nonsmokerNum = 0;
       String providerName = "", firstName = "", lastName = "", smokingStatus = "";
-      double height = 0.0, weight = 0.0, BMI = 0.0, policyPrice = 0.0;
+      double height = 0.0, weight = 0.0;
+      
+      //an array list is created to hold the Policy class
+      ArrayList<Policy> policies = new ArrayList<Policy>();
+      
+      //file has been opened
+      Scanner inputFile = new Scanner(file);
       
       //process file
       while(inputFile.hasNext())
@@ -44,23 +47,7 @@ public class Project_Morgan_Rose
          smokingStatus = inputFile.nextLine();
          height = inputFile.nextDouble();
          weight = inputFile.nextDouble();
-         
-         //new policy file is created to use all inputted variables
-         Policy policyholder = new Policy(policyNum, providerName, firstName, lastName, age, smokingStatus, height, weight);
-         
-         //program checks if the current policy holder is a smoker
-         if(smokingStatus.equalsIgnoreCase("smoker"))
-         {
-            smokerNum++;
-         } else 
-         {
-            nonsmokerNum++;
-         }
-         
-         //Policy file uses displayInformation method to display information
-         policyholder.displayInformation();
-         System.out.println();
-         
+
          //prepares next lines
          if(inputFile.hasNext())
          {
@@ -71,10 +58,30 @@ public class Project_Morgan_Rose
             inputFile.nextLine();
          }
          
+         //expands the array list by creating a new Policy object
+         policies.add(new Policy(policyNum, providerName, firstName, lastName, age, smokingStatus, height, weight));
+         
       }
       
       //closes the file
       inputFile.close();
+      
+      //uses loop to print information about policies
+      for(Policy p : policies)
+      {
+         p.displayInformation();
+         System.out.println();
+         
+         //program checks if the current policy holder is a smoker
+         if(p.getSmokingStatus().equalsIgnoreCase("smoker"))
+         {
+            smokerNum++;
+         } else 
+         {
+            nonsmokerNum++;
+         }
+
+      }
       
       //system displays the number of smokers and non-smokers
       System.out.println("The number of policies with a smoker is: " + smokerNum);
