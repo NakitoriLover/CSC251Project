@@ -128,11 +128,11 @@ public class Policy
       method creates a ToString method
       @return str output of the ToString method
    */
-   public String ToString()
+   public String toString()
    {
       String str = "Policy Number: " + policyNum +
                    "\nProvider Name: " + providerName +
-                   holder.ToString() +
+                   "\n" + holder +
                    "\nPolicyholder's BMI: " + calculateBMI() +
                    "\nPolicy Price: " + calculateCost();
       

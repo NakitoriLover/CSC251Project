@@ -20,7 +20,7 @@ public class Project_Morgan_Rose
       Scanner inputFile = new Scanner(file);
       
       //variables
-      int policyNum = 0, age = 0, smokerNum = 0, nonsmokerNum = 0;
+      int policyNum = 0, age = 0, smokerNum = 0, nonsmokerNum = 0, policyObjNum = 0;
       String providerName = "", firstName = "", lastName = "", smokingStatus = "";
       double height = 0.0, weight = 0.0, BMI = 0.0, policyPrice = 0.0;
       
@@ -45,8 +45,9 @@ public class Project_Morgan_Rose
          height = inputFile.nextDouble();
          weight = inputFile.nextDouble();
          
-         //new policy file is created to use all inputted variables
-         Policy policyholder = new Policy(policyNum, providerName, firstName, lastName, age, smokingStatus, height, weight);
+         //new policyholder and policy file is created to use all inputted variables
+         PolicyHolder holder = new PolicyHolder(firstName, lastName, age, smokingStatus, height, weight);
+         Policy policy = new Policy(policyNum, providerName, holder);
          
          //program checks if the current policy holder is a smoker
          if(smokingStatus.equalsIgnoreCase("smoker"))
@@ -57,8 +58,10 @@ public class Project_Morgan_Rose
             nonsmokerNum++;
          }
          
+         policyObjNum++;
+         
          //Policy file uses displayInformation method to display information
-         policyholder.displayInformation();
+         System.out.println(policy);
          System.out.println();
          
          //prepares next lines
@@ -75,6 +78,9 @@ public class Project_Morgan_Rose
       
       //closes the file
       inputFile.close();
+      
+      //displays number of policy objects created
+      System.out.println("There were " + policyObjNum + " Policy objects created.");
       
       //system displays the number of smokers and non-smokers
       System.out.println("The number of policies with a smoker is: " + smokerNum);

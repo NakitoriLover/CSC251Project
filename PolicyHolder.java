@@ -171,7 +171,7 @@ public class PolicyHolder
       method creates a ToString method
       @return str output of the ToString method
    */
-   public String ToString()
+   public String toString()
    {
       String str = "Policyholder's First Name: " + firstName +
                    "\nPolicyholder's Last Name: " + lastName +
