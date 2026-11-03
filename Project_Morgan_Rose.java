@@ -20,9 +20,12 @@ public class Project_Morgan_Rose
       Scanner inputFile = new Scanner(file);
       
       //variables
-      int policyNum = 0, age = 0, smokerNum = 0, nonsmokerNum = 0, policyObjNum = 0;
+      int policyNum = 0, age = 0, smokerNum = 0;
       String providerName = "", firstName = "", lastName = "", smokingStatus = "";
       double height = 0.0, weight = 0.0, BMI = 0.0, policyPrice = 0.0;
+      
+      //array list is created
+      ArrayList<Policy> policylist = new ArrayList<Policy>();
       
       //process file
       while(inputFile.hasNext())
@@ -49,20 +52,8 @@ public class Project_Morgan_Rose
          PolicyHolder holder = new PolicyHolder(firstName, lastName, age, smokingStatus, height, weight);
          Policy policy = new Policy(policyNum, providerName, holder);
          
-         //program checks if the current policy holder is a smoker
-         if(smokingStatus.equalsIgnoreCase("smoker"))
-         {
-            smokerNum++;
-         } else 
-         {
-            nonsmokerNum++;
-         }
-         
-         policyObjNum++;
-         
-         //Policy file uses displayInformation method to display information
-         System.out.println(policy);
-         System.out.println();
+         //the objects are added to the arraylist
+         policylist.add(policy);
          
          //prepares next lines
          if(inputFile.hasNext())
@@ -79,12 +70,25 @@ public class Project_Morgan_Rose
       //closes the file
       inputFile.close();
       
+      //creates a for loop to display and interpret information
+      for(int i=0; i < policylist.size(); i++)
+      {
+         System.out.println(policylist.get(i));
+         System.out.println();
+         
+          //program checks if the current policy holder is a smoker
+         if(policylist.get(i).getHolder().getSmokingStatus().equalsIgnoreCase("smoker"))
+         {
+            smokerNum++;
+         }
+      }
+      
       //displays number of policy objects created
-      System.out.println("There were " + policyObjNum + " Policy objects created.");
+      System.out.println("There were " + policylist.size() + " Policy objects created.");
       
       //system displays the number of smokers and non-smokers
       System.out.println("The number of policies with a smoker is: " + smokerNum);
-      System.out.println("The number of policies with a non-smoker is: " + nonsmokerNum);
+      System.out.println("The number of policies with a non-smoker is: " + (policylist.size() - smokerNum));
       
    }
 }

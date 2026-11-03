@@ -65,6 +65,8 @@ public class Policy
       return new PolicyHolder(holder);
    }
    
+   //other methods
+   
     /*
       This method uses the holder's height and weight to calculate BMI
       @return BMI The result of the BMI calculations utilizing the holder's height and weight
@@ -113,18 +115,6 @@ public class Policy
    }
    
    /*
-      This method uses all previous variables and methods to display information about the cost and policy.
-   */
-   public void displayInformation()
-   {
-      System.out.println("Policy Number: " + policyNum);
-      System.out.println("Provider Name: " + providerName);
-
-      System.out.printf("Policyholder's BMI: %.2f\n", calculateBMI());
-      System.out.printf("Policy Price: $%.2f\n", calculateCost());
-   }
-   
-   /*
       method creates a ToString method
       @return str output of the ToString method
    */
@@ -132,10 +122,10 @@ public class Policy
    {
       String str = "Policy Number: " + policyNum +
                    "\nProvider Name: " + providerName +
-                   "\n" + holder +
+                   "\n" + holder.toString() +
                    "\nPolicyholder's BMI: " + calculateBMI() +
-                   "\nPolicy Price: " + calculateCost();
-      
+                   "\nPolicy Price: $" + calculateCost();
+                   
       return str;
    }
    
