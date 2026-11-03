@@ -1,194 +1,85 @@
 public class Policy
 {
    //instance fields
-   private int policyNum, age;
-   private String providerName, firstName, lastName, smokingStatus;
-   private double height, weight;
+   private int policyNum;
+   private String providerName;
+   private PolicyHolder holder;
    
-   //no arg constructor
-   public Policy()
-   {
-      policyNum = 0; 
-      age = 0;
-      providerName = "";
-      firstName = "";
-      lastName = "";
-      smokingStatus = "";
-      height = 0.0;
-      weight = 0.0;
-   }
+   //no argument constructor has been removed
    
    //all arg constructor
-   public Policy(int num, String name, String first, String last, int a, String smoke, double h, double w)
+   public Policy(int  policyNum, String providerName, PolicyHolder holder)
    {
-      policyNum = num; 
-      age = a;
-      providerName = name;
-      firstName = first;
-      lastName = last;
-      smokingStatus = smoke;
-      height = h;
-      weight = w;
+      this.policyNum =  policyNum; 
+      this.providerName = providerName;
+      this.holder = new PolicyHolder(holder);
+      
    }
-   
-   /**
+
+   //setter methods
+     
+   /*
       This method sets the policy number
-      @param num Policy number integer inputted by user
+      @param policyNum Policy number integer inputted by user
    */
-   public void setPolicyNum(int num)
+   public void setPolicyNum(int policyNum)
    {
-      policyNum = num;
+      this.policyNum = policyNum;
    }
    
-   /**
-      This method returns the policy number
-      @return Policy Number that was previously set
+   /*
+      This method sets the name of the provider
+      @param providerName Provider name is stored as a String
    */
-   public int returnPolicyNum()
+    public void setProviderName(String providerName)
+   {
+      this.providerName = providerName;
+   }
+   
+   //getter methods
+   
+   /*
+      This method returns the Provider Name
+      @return providerName Provider Name String that was previous set
+   */
+   public String getProviderName()
+   {
+      return providerName;
+   } 
+   
+   /*
+      This method returns the policy number
+      @return policyNum Policy Number that was previously set
+   */
+   public int getPolicyNum()
    {
       return policyNum;
    }
    
-   /**
-      This method sets the Age of the holder
-      @param a Age integer inputted by user
+   /*
+      This method returns the holder variable
+      @return new PolicyHolder(holder) returns the PolicyHolder variable as copy
    */
-   public void setAge(int a)
+   public PolicyHolder getHolder()
    {
-      age = a;
+      return new PolicyHolder(holder);
    }
    
-   /**
-      This method returns the holder age
-      @return Holder age that was previously set
-   */
-   public int returnAge()
-   {
-      return age;
-   }
-   
-   /**
-      This method sets the name of the provider
-      @param name Provider name is stored as a String
-   */
-    public void setProviderName(String name)
-   {
-      providerName = name;
-   }
-   
-   /**
-      This method returns the Provider Name
-      @return Provider Name String that was previous set
-   */
-   public String returnProviderName()
-   {
-      return providerName;
-   }
-   
-    /**
-      This method sets the first name of the policy holder
-      @param first Policy holder's first name is stored as a String
-   */
-   public void setFirstName(String first)
-   {
-      firstName = first;
-   }
-   
-   /**
-      This method returns the Policy Holder's First Name
-      @return Policy Holder First Name String that was previous set
-   */
-   public String returnFirstName()
-   {
-      return firstName;
-   }
-   
-   /**
-      This method sets the last name of the policy holder
-      @param last Policy holder's last name is stored as a String
-   */
-   public void setLastName(String last)
-   {
-      lastName = last;
-   }
-   
-    /**
-      This method returns the Policy Holder's Last Name
-      @return Policy Holder Last Name String that was previous set
-   */
-   public String returnLastName()
-   {
-      return lastName;
-   }
-   
-  /**
-      This method sets the smoking status of the policy holder
-      @param smoke Policy holder's smoking status is stored as a String
-   */
-   public void setSmokingStatus(String smoke)
-   {
-      smokingStatus = smoke;
-   }
-   
-   /**
-      This method returns the Policy Holder's Smoking Status
-      @return Policy Holder Smoking Status String that was previous set
-   */
-   public String returnSmokingStatus()
-   {
-      return smokingStatus;
-   }
-   
-   /**
-      This method sets the height of the policy holder
-      @param h Policy holder's height is stored as a double
-   */
-   public void setHeight(double h)
-   {
-      height = h;
-   }
-   
-    /**
-      This method returns the Policy Holder's Height
-      @return Policy Holder Height double that was previous set
-   */
-   public double returnHeight()
-   {
-      return height;
-   }
-   
-   /**
-      This method sets the weight of the policy holder
-      @param w Policy holder's weight is stored as a double
-   */
-   public void setWeight(double w)
-   {
-      weight = w;
-   }
-   
-    /**
-      This method returns the Policy Holder's Weight
-      @return Policy Holder Weight double that was previous set
-   */
-   public double returnWeight()
-   {
-      return weight;
-   }
-   /**
+    /*
       This method uses the holder's height and weight to calculate BMI
-      @return The result of the BMI calculations utilizing the holder's height and weight
+      @return BMI The result of the BMI calculations utilizing the holder's height and weight
    */
    public double calculateBMI()
    {
       final double CONVFACTOR = 703;
       
-      double BMI = (weight * CONVFACTOR) / (height * height);
+      double BMI = (holder.getWeight() * CONVFACTOR) / (holder.getHeight() * holder.getHeight());
       return BMI;
    }
    
-   /**
+   /*
       This method uses several methods and variables to calculate the overall cost
-      @return The result of the cost calculations utilizing various methods and variables
+      @return totalCost The result of the cost calculations utilizing various methods and variables
    */
    public double calculateCost()
    {
@@ -203,12 +94,12 @@ public class Policy
       double totalCost = BASE_PRICE;
       double BMI = calculateBMI();
       
-      if(age > AGE_THRESHOLD)
+      if(holder.getAge() > AGE_THRESHOLD)
       {
          totalCost += ADDITIONAL_FEE_AGE;
       }
       
-      if(smokingStatus.equalsIgnoreCase("smoker"))
+      if(holder.getSmokingStatus().equalsIgnoreCase("smoker"))
       {
          totalCost += ADDITIONAL_FEE_SMOKING;
       }
@@ -221,21 +112,31 @@ public class Policy
       return totalCost;
    }
    
-   /**
+   /*
       This method uses all previous variables and methods to display information about the cost and policy.
    */
    public void displayInformation()
    {
       System.out.println("Policy Number: " + policyNum);
       System.out.println("Provider Name: " + providerName);
-      System.out.println("Policyholder's First Name: " + firstName);
-      System.out.println("Policyholder's Last Name: " + lastName);
-      System.out.println("Policyholder's Age: " + age);
-      System.out.println("Policyholder's Smoking Status (smoker/non-smoker): " + smokingStatus);
-      System.out.println("Policyholder's Height: " + height + " inches");
-      System.out.println("Policyholder's Weight: " + weight + " pounds");
+
       System.out.printf("Policyholder's BMI: %.2f\n", calculateBMI());
       System.out.printf("Policy Price: $%.2f\n", calculateCost());
+   }
+   
+   /*
+      method creates a ToString method
+      @return str output of the ToString method
+   */
+   public String ToString()
+   {
+      String str = "Policy Number: " + policyNum +
+                   "\nProvider Name: " + providerName +
+                   holder.ToString() +
+                   "\nPolicyholder's BMI: " + calculateBMI() +
+                   "\nPolicy Price: " + calculateCost();
+      
+      return str;
    }
    
 }
