@@ -6,7 +6,7 @@ public class PolicyHolder
    private String firstName, lastName, smokingStatus;
    private double height, weight;
    
-   /*
+   /**
       No argument constructor
    */
    public PolicyHolder()
@@ -19,7 +19,7 @@ public class PolicyHolder
       weight = 0.0;
    }
    
-   /*
+   /**
       Argument accepting constructor
       @param firstName holds the policy holder's first name
       @param lastName holds the policy holder's last name
@@ -38,7 +38,7 @@ public class PolicyHolder
       this.weight = weight;
    }
    
-   /*
+   /**
       constuctor that accepts own class as an argument
       @param holder holds the PolicyHolder class 
    */
@@ -54,7 +54,7 @@ public class PolicyHolder
    
    //setter methods
    
-   /*
+   /**
       This method sets the Age of the holder
       @param age Age integer inputted by user
    */
@@ -63,7 +63,7 @@ public class PolicyHolder
       this.age = age;
    }
    
-    /*
+    /**
       This method sets the first name of the policy holder
       @param firstName Policy holder's first name is stored as a String
    */
@@ -72,7 +72,7 @@ public class PolicyHolder
       this.firstName = firstName;
    }
    
-   /*
+   /**
       This method sets the last name of the policy holder
       @param lastName Policy holder's last name is stored as a String
    */
@@ -81,7 +81,7 @@ public class PolicyHolder
       this.lastName = lastName;
    }
    
-  /*
+  /**
       This method sets the smoking status of the policy holder
       @param smokingStatus Policy holder's smoking status is stored as a String
    */
@@ -90,7 +90,7 @@ public class PolicyHolder
       this.smokingStatus = smokingStatus;
    }
    
-   /*
+   /**
       This method sets the height of the policy holder
       @param height Policy holder's height is stored as a double
    */
@@ -99,7 +99,7 @@ public class PolicyHolder
       this.height = height;
    }
    
-   /*
+   /**
       This method sets the weight of the policy holder
       @param weight Policy holder's weight is stored as a double
    */
@@ -111,7 +111,7 @@ public class PolicyHolder
    
    //getter methods
    
-   /*
+   /**
       This method returns the holder age
       @return age Holder age that was previously set
    */
@@ -120,7 +120,7 @@ public class PolicyHolder
       return age;
    }
    
-   /*
+   /**
       This method returns the Policy Holder's First Name
       @return firstName Policy Holder First Name String that was previous set
    */
@@ -138,7 +138,7 @@ public class PolicyHolder
       return lastName;
    }
    
-   /*
+   /**
       This method returns the Policy Holder's Smoking Status
       @return smokingStatus Policy Holder Smoking Status String that was previous set
    */
@@ -147,7 +147,7 @@ public class PolicyHolder
       return smokingStatus;
    }
    
-    /*
+    /**
       This method returns the Policy Holder's Height
       @return height Policy Holder Height double that was previous set
    */
@@ -156,7 +156,7 @@ public class PolicyHolder
       return height;
    }
    
-    /*
+    /**
       This method returns the Policy Holder's Weight
       @return Policy Holder Weight double that was previous set
    */
@@ -167,20 +167,31 @@ public class PolicyHolder
    
    //other methods
    
-   /*
+   /**
+      This method uses the holder's height and weight to calculate BMI
+      @return BMI The result of the BMI calculations utilizing the holder's height and weight
+   */
+   public double calculateBMI()
+   {
+      final double CONVFACTOR = 703;
+      
+      double BMI = (getWeight() * CONVFACTOR) / (getHeight() * getHeight());
+      return BMI;
+   }
+   
+   /**
       method creates a ToString method
       @return str output of the ToString method
    */
    public String toString()
    {
-      String str = "Policyholder's First Name: " + firstName +
-                   "\nPolicyholder's Last Name: " + lastName +
-                   "\nPolicyholder's Age: " + age +
-                   "\nPolicyholder's Smoking Status (Y/N): " + smokingStatus +
-                   "\nPolicyholder's Height: " + height + " inches" +
-                   "\nPolicyholder's Weight: " + weight + " pounds";
-      
-      return str;
+      return "Policyholder's First Name: " + firstName +
+       "\nPolicyholder's Last Name: " + lastName +
+       "\nPolicyholder's Age: " + age +
+       "\nPolicyholder's Smoking Status (Y/N): " + smokingStatus +
+       "\n" + String.format("Policyholder's Height: %.1f inches", height) +
+       "\n" + String.format("Policyholder's Weight: %.1f pounds", weight) +
+       "\n" + String.format("Policyholder's BMI: %.2f", calculateBMI());
    }
    
 }

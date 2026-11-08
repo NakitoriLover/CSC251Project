@@ -20,7 +20,7 @@ public class Project_Morgan_Rose
       Scanner inputFile = new Scanner(file);
       
       //variables
-      int policyNum = 0, age = 0, smokerNum = 0;
+      int policyNum = 0, age = 0, smokerNum = 0, policyCount = 0;
       String providerName = "", firstName = "", lastName = "", smokingStatus = "";
       double height = 0.0, weight = 0.0, BMI = 0.0, policyPrice = 0.0;
       
@@ -60,10 +60,6 @@ public class Project_Morgan_Rose
          {
             inputFile.nextLine();
          }
-           if(inputFile.hasNext())
-         {
-            inputFile.nextLine();
-         }
          
       }
       
@@ -84,7 +80,7 @@ public class Project_Morgan_Rose
       }
       
       //displays number of policy objects created
-      System.out.println("There were " + policylist.size() + " Policy objects created.");
+      System.out.println("There were " + Policy.getPolicyCount() + " Policy objects created.");
       
       //system displays the number of smokers and non-smokers
       System.out.println("The number of policies with a smoker is: " + smokerNum);

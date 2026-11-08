@@ -4,21 +4,35 @@ public class Policy
    private int policyNum;
    private String providerName;
    private PolicyHolder holder;
+   private static int policyCount = 0;
    
-   //no argument constructor has been removed
+   /**
+      no argument constructor
+   */
+   public Policy()
+   {
+      this.policyCount++;
+   }
    
-   //all arg constructor
-   public Policy(int  policyNum, String providerName, PolicyHolder holder)
+   /**
+      all arg constructor
+      @param policyNum holds the policyNum int
+      @param providerName holds providerName String
+      @param holder holds the PolicyHolder class
+      
+   */
+   public Policy(int policyNum, String providerName, PolicyHolder holder)
    {
       this.policyNum =  policyNum; 
       this.providerName = providerName;
       this.holder = new PolicyHolder(holder);
+      this.policyCount++;
       
    }
 
    //setter methods
      
-   /*
+   /**
       This method sets the policy number
       @param policyNum Policy number integer inputted by user
    */
@@ -27,7 +41,7 @@ public class Policy
       this.policyNum = policyNum;
    }
    
-   /*
+   /**
       This method sets the name of the provider
       @param providerName Provider name is stored as a String
    */
@@ -38,7 +52,7 @@ public class Policy
    
    //getter methods
    
-   /*
+   /**
       This method returns the Provider Name
       @return providerName Provider Name String that was previous set
    */
@@ -47,7 +61,7 @@ public class Policy
       return providerName;
    } 
    
-   /*
+   /**
       This method returns the policy number
       @return policyNum Policy Number that was previously set
    */
@@ -56,7 +70,7 @@ public class Policy
       return policyNum;
    }
    
-   /*
+   /**
       This method returns the holder variable
       @return new PolicyHolder(holder) returns the PolicyHolder variable as copy
    */
@@ -65,21 +79,18 @@ public class Policy
       return new PolicyHolder(holder);
    }
    
-   //other methods
-   
-    /*
-      This method uses the holder's height and weight to calculate BMI
-      @return BMI The result of the BMI calculations utilizing the holder's height and weight
+   /**
+      This method returns the policyCount variable
+      @return policyCount returns the policyCount int
    */
-   public double calculateBMI()
+   public static int getPolicyCount()
    {
-      final double CONVFACTOR = 703;
-      
-      double BMI = (holder.getWeight() * CONVFACTOR) / (holder.getHeight() * holder.getHeight());
-      return BMI;
+      return policyCount;
    }
    
-   /*
+   //other methods
+   
+   /**
       This method uses several methods and variables to calculate the overall cost
       @return totalCost The result of the cost calculations utilizing various methods and variables
    */
@@ -94,7 +105,7 @@ public class Policy
       final int BMI_THRESHOLD = 35;
       
       double totalCost = BASE_PRICE;
-      double BMI = calculateBMI();
+      double BMI = holder.calculateBMI();
       
       if(holder.getAge() > AGE_THRESHOLD)
       {
@@ -114,19 +125,16 @@ public class Policy
       return totalCost;
    }
    
-   /*
+   /**
       method creates a ToString method
       @return str output of the ToString method
    */
    public String toString()
    {
-      String str = "Policy Number: " + policyNum +
-                   "\nProvider Name: " + providerName +
-                   "\n" + holder.toString() +
-                   "\nPolicyholder's BMI: " + calculateBMI() +
-                   "\nPolicy Price: $" + calculateCost();
-                   
-      return str;
+      return "Policy Number: " + policyNum +
+       "\nProvider Name: " + providerName +
+       "\n" + holder.toString() +
+       "\n" + String.format("Policy Price: $%.2f", calculateCost());
    }
    
 }
